@@ -298,7 +298,7 @@ export async function fetchStats(): Promise<Stats> {
 
   const tagCounts: Record<string, number> = {}
   for (const row of tagsRes.data ?? []) {
-    const name = (row.tags as { name: string } | null)?.name
+    const name = (row.tags as unknown as { name: string } | null)?.name
     if (name) tagCounts[name] = (tagCounts[name] ?? 0) + 1
   }
   const top_tags = Object.entries(tagCounts)
